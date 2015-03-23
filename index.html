@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>NoWebRTC Realtime Text Chat! � Muaz Khan</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <style>
+  </style>
+  <script src="https://www.webrtc-experiment.com/screenshot.js">
+  </script>
+  <script src="https://cdn.firebase.com/v0/firebase.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+
+<body>
+
+
+
+  <div id="render-me" class="notepad">
+    <textarea type="text" id="chat-input"></textarea>
+  </div>
+  <script>
+  var channel = location.hash.replace('#', '')||  (Math.random() * new Date().getTime()).toString(36).replace(/\./g, '');
+  location.hash  = channel;
+  //channel = "fahim-12345";
+  var firebase = new Firebase('https://webrtc.firebaseIO.com/' + channel);
+  firebase.on("child_added", function(data) {
+    onMessage(data.val());
+  });
+  setTimeout(onOpen, 1);
+  firebase.onDisconnect().remove();
+  console.log(firebase);
+
+  function onMessage(data) {
+    switch (data.type) {
+      case "JOINED":
+        firebase && firebase.push({
+          userID: data.userID,
+          type: 'INIT',
+           message: document.getElementById('chat-input').value
+        });
+        break;
+      case "INIT":
+      if(data.userID == userID)
+      {
+         document.getElementById('chat-input').value = data.message;
+      }
+      break;
+      case "MESSAGE":
+        if (data.userID != userID && data.message) {
+          document.getElementById('chat-input').value = data.message;
+        }
+        break;
+    }
+  }
+  var userID = Math.random().toString(36).substr(2, 35).toUpperCase();
+  var colors = ['green', 'blue', 'black', 'rgb(133, 14, 81)', 'rgb(3, 114, 119)', 'rgb(100, 119, 3)', 'rgb(119, 49, 3)'];
+  var userColor = colors[parseInt(Math.random() * colors.length)] || 'red';
+
+  function onOpen(data) {
+    console.log('firebase opened', data);
+    firebase && firebase.push({
+      userID: userID,
+      type: 'JOINED'
+    });
+  }
+
+  document.getElementById('chat-input').onkeyup = function(e) {
+
+    firebase && firebase.push({
+      userID: userID,
+      type: "MESSAGE",
+      message: document.getElementById('chat-input').value
+    });
+
+
+  }
+  </script>
+
+</body>
+
+</html>

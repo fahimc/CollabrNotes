@@ -1,0 +1,26 @@
+ @import url(http://fonts.googleapis.com/css?family=Just+Another+Hand);
+ * {
+   padding: 0;
+   margin: 0;
+ }
+ html, body {
+   width: 100%;
+   height: 100%;
+   overflow: hidden;
+ }
+ textarea {
+   font-family: 'Just Another Hand', cursive;
+   width: calc(100% - 40px);
+   padding: 20px;
+   height: calc(100% - 40px);
+   font-size: 24px;
+   line-height: 23px;
+   background-image: url(../images/bg.gif);
+  /*background: none;*/
+   background-position: 0 -8px;
+  border:0;
+ }
+ .notepad {
+   width: 100%;
+   height: 100%;
+ }
