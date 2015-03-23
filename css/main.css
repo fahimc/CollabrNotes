@@ -13,14 +13,64 @@
    width: calc(100% - 40px);
    padding: 20px;
    height: calc(100% - 40px);
-   font-size: 24px;
-   line-height: 23px;
-   background-image: url(../images/bg.gif);
-  /*background: none;*/
-   background-position: 0 -8px;
-  border:0;
+   font-size: 31px;
+   line-height: 24px;
+
+   background: none;
+   border:0;
+   position: absolute;
  }
- .notepad {
-   width: 100%;
-   height: 100%;
- }
+ textarea.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.notepad {
+ width: 100%;
+ height: 100%;
+ background-image: url(../images/bg.gif);
+ background-position: 0 -8px;
+}
+i 
+{
+  display: block;
+}
+#newButton
+{
+  cursor: pointer;
+  color: #e74c3c;
+  font-size: 38px;
+  position: absolute;
+  right: 10px;
+  bottom:10px;
+}
+#newButton:hover
+{
+  /*color: #c0392b;*/
+}
+.iconHolder
+{
+  color: #7f8c8d;
+  position: absolute;
+  width: 32px;
+  right: 20px;
+  top:20px;
+  font-size: 25px;
+  text-align: center;
+}
+.iconHolder i 
+{
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+#draw 
+{
+  position: absolute;
+}
+#pencilButton.active,#eraserButton.active
+{
+  color: #d35400;
+}

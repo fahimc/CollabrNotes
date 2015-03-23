@@ -2,24 +2,29 @@
 <html>
 
 <head>
-  <title>NoWebRTC Realtime Text Chat! � Muaz Khan</title>
+  <title>Collabr Notes</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <style>
-  </style>
-  <script src="https://www.webrtc-experiment.com/screenshot.js">
-  </script>
   <script src="https://cdn.firebase.com/v0/firebase.js"></script>
   <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/fontello.css">
+  <script type="text/javascript" src="js/canvas.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
 </head>
 
 <body>
 
-
-
   <div id="render-me" class="notepad">
+    <canvas id="draw" width="100%" height="100%"></canvas>
     <textarea type="text" id="chat-input"></textarea>
   </div>
-  <script>
+  <div class="iconHolder">
+    <!-- <i id="clipButton" class="icon-clipboard"></i> -->
+    <i id="mailButton" class="icon-mail"></i>
+    <i id="pencilButton" class="icon-pencil"></i>
+    <i id="eraserButton" class="icon-pencil"></i>
+  </div>
+  <i id="newButton" class="icon-plus-circle"></i>
+<!--  <script>
   var channel = location.hash.replace('#', '')||  (Math.random() * new Date().getTime()).toString(36).replace(/\./g, '');
   location.hash  = channel;
   //channel = "fahim-12345";
@@ -76,7 +81,7 @@
 
   }
   </script>
-
+-->
 </body>
 
 </html>
