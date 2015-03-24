@@ -136,8 +136,11 @@
 			ctx.closePath();
 		},
 		drawImage:function(img){
+			ctx.globalCompositeOperation = "destination-over";
 			ctx.clearRect ( 0 , 0 , canvas.width, canvas.height );
 			ctx.drawImage(img,0,0);
+			var data =canvas.toDataURL();
+			localStorage.setItem("notes-canvas-"+Main.channelId,data);
 		},
 		onResize:function(){
 			ctx.canvas.width  = window.innerWidth;

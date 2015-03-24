@@ -109,7 +109,7 @@
 			var body = this.inputElem.value.replace(/\n/g,'%0D%0A');
 			var mailto_link = 'mailto:' + '' + '?subject=' + subject + '&body=' + body;
 
-			win = window.open(mailto_link, 'emailWindow');
+			win = window.open(mailto_link, '_self');
 		}
 	};
 
