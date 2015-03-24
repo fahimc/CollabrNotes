@@ -70,7 +70,37 @@ i
 {
   position: absolute;
 }
-#pencilButton.active,#eraserButton.active
+#pencilButton.active,#eraserButton.active,#shareButton.active
 {
   color: #d35400;
+}
+#shareBox
+{
+  position: absolute;
+  background: #333;
+  padding: 10px;
+  color: #fff;
+  top: 0;
+  right: 30px;
+  font-family: sans-serif;
+  font-size: 12px;
+  border-radius: 10px;
+  display: none;
+}
+#shareBox.show
+{
+  display: block;
+}
+#shareBox h1
+{
+font-size: 15px;
+}
+#shareBox span
+{
+  border-radius: 10px;
+  margin-top: 5px;
+  display: block;
+  background: #fff;
+  padding: 5px 10px;
+  color:#333;
 }

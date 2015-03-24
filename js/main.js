@@ -6,6 +6,9 @@
 		inputElem:null,
 		newButton:null,
 		mailButton:null,
+		shareButton:null,
+		shareBox:null,
+		urlText:null,
 		init:function(){
 			document.addEventListener('DOMContentLoaded',this.onLoad.bind(this));
 		},
@@ -31,7 +34,9 @@
 			this.inputElem = document.getElementById('chat-input');
 			this.newButton = document.getElementById('newButton');
 			this.mailButton = document.getElementById('mailButton');
-			this.clipButton = document.getElementById('clipButton');
+			this.shareButton = document.getElementById('shareButton');
+			this.shareBox = document.getElementById('shareBox');
+			this.urlText = document.getElementById('urlText');
 		},
 		setListeners:function(){
 			firebase.on("child_added", function(data) {
@@ -41,7 +46,7 @@
 			this.inputElem.addEventListener("keyup",this.onKepUp.bind(this));
 			this.newButton.addEventListener("click",this.newNote.bind(this));
 			this.mailButton.addEventListener("click",this.mailClicked.bind(this));
-			//this.clipButton.addEventListener("click",this.clipboardClicked.bind(this));
+			this.shareButton.addEventListener("click",this.shareClicked.bind(this));
 		},
 		save:function(){
 			localStorage.setItem("notes-"+this.channelId,this.inputElem.value);
@@ -96,13 +101,16 @@
 			var url = window.location.href.split("#")[0];
 			window.open(url,"_blank");
 		},
-		clipboardClicked:function(){
-			var input = document.createElement("input");
-			input.type="text";
-			input.value = document.URL;
-			var textRange = input.createTextRange();
-			textRange.execCommand("RemoveFormat");
-			textRange.execCommand("Copy");
+		shareClicked:function(){
+			if(this.shareButton.classList.contains("active")){
+				this.shareButton.classList.remove("active");
+				this.shareBox.classList.remove("show");
+			}else{
+				this.urlText.innerHTML = document.URL;
+				this.shareButton.classList.add("active");
+				this.shareBox.classList.add("show");
+
+			}
 		},
 		mailClicked:function(){
 			var subject = "Notes";
